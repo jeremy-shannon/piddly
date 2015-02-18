@@ -4,9 +4,15 @@ var app = angular.module('jeremyApp', []);
 
 app.controller('MainCtrl', function($scope, $http) {
     $scope.theNumber = 0;
+    var alertState = false;
+
+    $scope.showAlert = function() {
+        return alertState;
+    };
 
     $scope.getNumber = function() {
         $scope.theNumber = 10 * Math.random();
+        alertState = false;
     };
 
 
@@ -22,14 +28,18 @@ app.controller('MainCtrl', function($scope, $http) {
 
     // when submitting the add form, send the text to the node API
     $scope.saveScore = function() {
-        $http.post('/api/scores', {name : $scope.yourName, score : $scope.theNumber})
-            .success(function(data) {
-                $scope.scores = data;
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
-        $scope.theNumber = 0;
+        if ($scope.theNumber === 0) {
+            alertState = true;
+        } else {
+            $http.post('/api/scores', {name : $scope.yourName, score : $scope.theNumber})
+                .success(function(data) {
+                    $scope.scores = data;
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+            $scope.theNumber = 0;
+        }
     };
 });
 
