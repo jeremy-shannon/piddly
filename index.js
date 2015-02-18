@@ -4,8 +4,14 @@ var app = express();
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var path = require('path');
+var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
+var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 
+app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
+app.use(bodyParser.json());                                     // parse application/json
+app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
+app.use(methodOverride());
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.
 console.log(process.env.MONGOLAB_URI);
@@ -31,29 +37,51 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 
-var mySchema = new mongoose.Schema({
-  myname: String
+var scoresSchema = new mongoose.Schema({
+  name: String,
+  score: Number
 });
 
-var myNames = mongoose.model('Test',mySchema, 'test');
+var scoresList = mongoose.model('ScoreList',scoresSchema, 'scoreList');
 
 app.get('/', function(req, res) {
-    var theName = '';
-    myNames.findOne({}).exec(function(err,result) {
-        if (!err) {
- /*           console.log('hey');
-            console.log(result);
-            theName = result.myname;
-            console.log(theName);
-            var outputString = '';
-            var times = process.env.TIMES * 2 || 5
-            for (i=0; i < times; i++) {
-                outputString += theName + '<br>';
-                outputString += cool() + '<br>';
-            }*/
-            res.sendFile(path.join(__dirname + '/index.html'));
-        }
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+// get all scores
+app.get('/api/scores', function(req, res) {
+
+    // use mongoose to get all scores in the database
+    scoresList.find({}).sort('-score').exec(function(err, scores) {
+
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err)
+            res.send(err)
+
+        res.json(scores); // return all scores in JSON format
     });
+});
+
+// create score and send back all scores after creation
+app.post('/api/scores', function(req, res) {
+
+    // create a score, information comes from AJAX request from Angular
+    scoresList.create({
+        name : req.body.name,
+        score : req.body.score,
+        done : false
+    }, function(err, score) {
+        if (err)
+            res.send(err);
+
+        // get and return all the scores after you create another
+        scoresList.find({}).sort('-score').exec(function(err, scores) {
+            if (err)
+                res.send(err)
+            res.json(scores);
+        });
+    });
+
 });
 
 app.get('/core.js', function(req, res) {
