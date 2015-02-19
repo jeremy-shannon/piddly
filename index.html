@@ -23,7 +23,9 @@
         <p>{{yourName}}'s number: {{ theNumber }}</p>
         <hr>
         <button ng-disabled="myForm.$invalid" ng-click="saveScore()">Save my score</button></form>
-        <p ng-show="showAlert()">You really want to save a score of zero?</p>
+        <div class="alert alert-danger" role="alert" ng-show="showAlert()">
+          <strong>Hang on!</strong> You really want to save a score of zero?
+        </div>
     </div>
     <div class="col-md-6">
         <table style="width:100%">
