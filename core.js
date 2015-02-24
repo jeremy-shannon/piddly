@@ -4,7 +4,12 @@ var app = angular.module('jeremyApp', []);
 
 app.controller('MainCtrl', function($scope, $http) {
     $scope.theNumber = 0;
+    $scope.rowClass = '';
+    $scope.listLength = 10;
     var alertState = false;
+    $scope.currentScore = 0;
+    $scope.currentRank = 0;
+    $scope.currenName = '';
 
     $scope.showAlert = function() {
         return alertState;
@@ -20,7 +25,6 @@ app.controller('MainCtrl', function($scope, $http) {
     $http.get('/api/scores')
         .success(function(data) {
             $scope.scores = data;
-            console.log(data);
         })
         .error(function(data) {
             console.log('Error: ' + data);
@@ -31,9 +35,17 @@ app.controller('MainCtrl', function($scope, $http) {
         if ($scope.theNumber === 0) {
             alertState = true;
         } else {
+            $scope.currentRank = 1;
+            $scope.currentName = $scope.yourName;
+            $scope.currentScore = $scope.theNumber;
             $http.post('/api/scores', {name : $scope.yourName, score : $scope.theNumber})
                 .success(function(data) {
                     $scope.scores = data;
+                    for (item in data) {
+                        if (data[item].score > $scope.currentScore) {
+                                $scope.currentRank++;
+                        }
+                    }
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);

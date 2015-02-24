@@ -88,6 +88,10 @@ app.get('/core.js', function(req, res) {
     res.sendFile(path.join(__dirname + '/core.js'));
 });
 
+app.get('/app.css', function(req, res) {
+    res.sendFile(path.join(__dirname + '/app.css'));
+});
+
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'));
 });

@@ -8,7 +8,8 @@
     <title>Jeremy's Piddly App</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
-    <script src="../../core.js"></script>
+    <link rel="stylesheet" href="app.css">
+    <script src="core.js"></script>
 </head>
 <body ng-app="jeremyApp">
     <div ng-controller="MainCtrl">
@@ -38,11 +39,28 @@
             <th>Name</th>
             <th>Score</th>
           </tr>
-          <tr ng-repeat="score in scores">
-            <td>{{$index + 1}}</td>
-            <td>{{score.name}}</td>
-            <td>{{score.score}}</td>
-          </tr>
+          <tr ng-repeat="score in scores | limitTo:listLength">
+
+            <!-- current score, if in list -->
+            <td ng-if="score.score == currentScore"><strong>{{$index + 1}}</strong></td>
+            <td ng-if="score.score == currentScore"><strong>{{score.name}}</strong></td>
+            <td ng-if="score.score == currentScore"><strong>{{score.score}}</strong></td>
+
+            <!-- normal non-current scores -->
+            <td ng-if="score.score != currentScore">{{$index + 1}}</td>
+            <td ng-if="score.score != currentScore">{{score.name}}</td>
+            <td ng-if="score.score != currentScore">{{score.score}}</td>
+        </tr>
+
+        <tr ng-if="currentRank > listLength"><td ng-if="currentRank > listLength">...</td></tr>
+
+            <!-- if off the list -->
+        <tr ng-if="currentRank > listLength">
+            <td ng-if="currentRank > listLength"><strong>{{currentRank}}</strong></td>
+            <td ng-if="currentRank > listLength"><strong>{{currentName}}</strong></td>
+            <td ng-if="currentRank > listLength"><strong>{{currentScore}}</strong></td>
+        </tr>
+
         </table>
     </div>
     </div>
