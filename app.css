@@ -346,3 +346,27 @@ table {
 .rowOff {
     color: rgba(220,60,35,.91);
 }
+
+@media screen and (max-width: 450px) {
+    input {
+        font-size: 45px;
+        margin-top: -20px;
+    }
+
+    .fakeInput {
+        margin-top: -80px;
+    }
+
+    .yourNumberIs {
+        margin-top: 20px;
+    }
+
+    .theNumber {
+        font-size: 45px;
+        margin-top: 0px;
+    }
+
+    .theNumberBackground {
+        margin-top: -60px;
+    }
+}
