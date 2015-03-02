@@ -1,4 +1,348 @@
-.text_type_bold{
-    font-style:none;
- font-weight:bold;
+* {
+    font-family: 'Questrial', sans-serif;
+}
+
+textarea:focus, input:focus, button:focus{
+    outline: 0;
+}
+
+body {background: url('/WebBackground.jpg') no-repeat   center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+
+:invalid {
+  box-shadow: none;
+}
+
+:-moz-submit-invalid {
+  box-shadow: none;
+}
+
+:-moz-ui-invalid {
+  box-shadow:none;
+}
+
+.title {
+    margin-left: 20px;
+    z-index: 900;
+}
+
+h1 {
+    font-family: 'Questrial', sans-serif;
+    color: rgba(218,61,31,.91);
+    letter-spacing: 3px;
+    font-size: 78px;
+    font-weight: 900;
+}
+
+.tagline {
+    background-color: rgba(249,213,1,.91);
+    margin: 0px;
+    margin-left: 40px;
+    margin-top: -23px;
+    margin-bottom: 20px;
+    width: 250px;
+    padding: 0px;
+    padding-left: 5px;
+    padding-top: 1px;
+    z-index: 950;
+}
+
+h2 {
+    color: rgba(8,155,207,.91);
+    font-size: 14px;
+    font-weight: 900;
+    margin: 0px;
+}
+
+label {
+    color: rgba(8,155,207,.91);
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+input {
+    border: 0px;
+    color: rgba(218,61,31,.91);
+    background-color: rgba(0,0,0,0);
+    letter-spacing: 3px;
+    font-size: 78px;
+    font-weight: 900;
+    height: 100px;
+    width: 100%;
+    margin-top: -20px;
+}
+
+.fakeInput {
+    background-color: rgba(249,213,1,.91);
+    height: 54px;
+    width: 100%;
+    margin-top: -70px;
+    margin-bottom: 20px;
+}
+
+button {
+    border: 0px;
+    color: rgba(255,255,255,1);
+    background-color: rgba(0,0,0,0);
+    margin: 0;
+    margin-top: -80px;
+    padding: 0;
+    height: 24px;
+}
+
+.buttonText {
+    background-color: rgba(218,61,31,.91);
+    display: inline-block;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+
+.glyphicon-play-circle {
+    display: inline-block;
+    color: rgba(218,61,31,.91);
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.yourNumberIs {
+    color: rgba(8,155,207,.91);
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 0;
+    margin-top: 35px;
+    padding: 0;
+}
+
+.theNumber {
+    color: rgba(218,61,31,.91);
+    letter-spacing: 3px;
+    font-size: 78px;
+    font-weight: 900;
+    margin-top: -20px;
+}
+
+.theNumberBackground {
+    height: 54px;
+    width: 100%;
+    background-color: rgba(249,213,1,.91);
+    margin-top: -82px;
+}
+
+.button2 {
+    margin-top: 17px;
+    margin-bottom: 20px;
+}
+
+table {
+    margin-top: 30px;
+}
+
+.topRow {
+    background-color: rgba(218,61,31,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    margin: 10px;
+}
+
+.otherRows{
+    height: 30px;
+}
+
+.rank1 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(8,155,207,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+.name1 {
+    color: rgba(8,155,207,.91);
+}
+
+.score1 {
+    color: rgba(8,155,207,.91);
+}
+
+.rank2 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(8,147,197,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+.name2 {
+    color: rgba(8,147,197,.91);
+}
+
+.score2 {
+    color: rgba(8,147,197,.91);
+}
+
+.rank3 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(43,137,180,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+.name3 {
+    color: rgba(43,137,180,.91);
+}
+
+.score3 {
+    color: rgba(43,137,180,.91);
+}
+
+.rank4 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(65,127,164,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+.name4 {
+    color: rgba(65,127,164,.91);
+}
+
+.score4 {
+    color: rgba(65,127,164,.91);
+}
+
+.rank5 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(91,116,141,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+.name5 {
+    color: rgba(91,116,141,.91);
+}
+
+.score5 {
+    color: rgba(91,116,141,.91);
+}
+
+.rank6 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(118,106,120,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+.name6 {
+    color: rgba(118,106,120,.91);
+}
+
+.score6 {
+    color: rgba(118,106,120,.91);
+}
+
+.rank7 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(145,95,101,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+.name7 {
+    color: rgba(145,95,101,.91);
+}
+
+.score7 {
+    color: rgba(145,95,101,.91);
+}
+
+.rank8 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(168,85,80,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+.name8 {
+    color: rgba(168,85,80,.91);
+}
+
+.score8 {
+    color: rgba(168,85,80,.91);
+}
+
+.rank9 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(189,75,63,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+.name9 {
+    color: rgba(189,75,63,.91);
+}
+
+.score9 {
+    color: rgba(189,75,63,.91);
+}
+
+.rank10 {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgba(204,68,48,.91);
+    color: rgba(255,255,255,1);
+    letter-spacing: 1px;
+    padding-left: 1px;
+}
+
+.name10 {
+    color: rgba(204,68,48,.91);
+}
+
+.score10 {
+    color: rgba(204,68,48,.91);
+}
+
+.rowDotDotDot {
+    color: rgba(216,63,39,.91);
+}
+
+.rowOff {
+    color: rgba(220,60,35,.91);
 }

@@ -92,6 +92,10 @@ app.get('/app.css', function(req, res) {
     res.sendFile(path.join(__dirname + '/app.css'));
 });
 
+app.get('/WebBackground.jpg', function(req, res) {
+    res.sendFile(path.join(__dirname + '/WebBackground.jpg'));
+});
+
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'));
 });
